@@ -1,0 +1,18 @@
+# Config for Air live-reloading
+
+[build]
+# The Go build command
+cmd = "go build -o tmp/main ./cmd"
+
+# The binary file to run
+bin = "tmp/main"
+
+# Enable watching changes in `cmd/`
+include_ext = ["go", "tpl", "tmpl", "html"]
+exclude_dir = ["tmp", "vendor"]
+
+# Delay before restarting (milliseconds)
+delay = 1000
+
+[log]
+time = true
