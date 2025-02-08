@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.6/htmx.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
 
 </head>
 
@@ -48,10 +49,23 @@
 </div>
 {{ end }}
 
-{{block "contact" . }}
-<div>
+{{ block "contact" . }}
+<div class="contact" id="contact-{{ .Id }}" style="display: flex;">
+    <div hx-indicator="#ci-{{ .Id }}" hx-target="#contact-{{ .Id }}" hx-swap="outerHTML swap:500ms"
+        hx-delete="/contacts/{{ .Id }}" style="width: 2rem; cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M4 2h16a1 1 0 011 1v1a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1zm0 2v14h16V4H4zm2 2h12v10H6V6z" />
+        </svg>
+    </div>
+
     Name: <span>{{ .Name }}</span>
     Email: <span>{{ .Email }}</span>
+
+    <div class="htmx-indicator" id="ci-{{ .Id }}" style="width: 24px; height: 24px;">
+        <img src="/images/bars.svg" alt="loading" style="width: 24px; height: 24px;" hx-get="/images/bars.svg" hx->
+
+    </div>
 </div>
 
 {{ end }}
